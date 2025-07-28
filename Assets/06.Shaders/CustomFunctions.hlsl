@@ -33,5 +33,5 @@ void HasVisiblePixelAround_float(UnityTexture2D tex, float2 uv, float distance, 
         }
     }
     
-    Out = curColor.a == 0 && result > 0;
+    Out = curColor.a < 0.1f && result > 0;
 }

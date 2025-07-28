@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using _02.Scripts.Level;
+using _02.Scripts.Level.Note;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _02.Scripts.Manager
 {
@@ -9,7 +11,10 @@ namespace _02.Scripts.Manager
         public static ParticleManager instance { get; private set; }
 
         [SerializeField] private ParticleSystem splitParticle;
-        [SerializeField] private ParticleSystem parryParticle;
+        [SerializeField] private ParticleSystem hitParticle;
+        
+        public ParticleSystem defendParticle;
+        public ParticleSystem attackParticle;
 
         private readonly Dictionary<string, (ParticleSystem, ParticleSystem)> _noteSplitParticleMap = new();
         private readonly Dictionary<string, ParticleSystem> _noteParryParticleMap = new();
@@ -19,13 +24,26 @@ namespace _02.Scripts.Manager
             instance = this;
         }
 
+        public void PlayParticle(ParticleSystem origin, Vector3 pos)
+        {
+            var sprite = origin.textureSheetAnimation.GetSprite(0);
+            if (sprite)
+            {
+                var main = origin.main;
+                main.startSize = new ParticleSystem.MinMaxCurve(sprite.rect.width / sprite.pixelsPerUnit);
+            }
+            
+            origin.transform.position = pos;
+            origin.Play();
+        }
+
         // ReSharper disable Unity.PerformanceAnalysis
         public void SpawnSplitParticle(NoteObject noteObj)
         {
             (ParticleSystem, ParticleSystem) particles;
             if(!_noteSplitParticleMap.ContainsKey(noteObj.note.noteType))
             {
-                particles = _noteSplitParticleMap[noteObj.note.noteType] = (Instantiate(splitParticle), Instantiate(splitParticle));
+                particles = _noteSplitParticleMap[noteObj.note.noteType] = (Instantiate(splitParticle, transform), Instantiate(splitParticle, transform));
 
                 particles.Item1.transform.eulerAngles = new Vector3(90, 0, 0);
                 particles.Item2.transform.eulerAngles = new Vector3(-90, 0, 0);
@@ -50,12 +68,12 @@ namespace _02.Scripts.Manager
         }
         
         // ReSharper disable Unity.PerformanceAnalysis
-        public void SpawnParryParticle(NoteObject noteObj)
+        public void SpawnHitParticle(NoteObject noteObj)
         {
             ParticleSystem particle;
             if(!_noteParryParticleMap.ContainsKey(noteObj.note.noteType))
             {
-                particle = _noteParryParticleMap[noteObj.note.noteType] = Instantiate(parryParticle);
+                particle = _noteParryParticleMap[noteObj.note.noteType] = Instantiate(hitParticle, transform);
 
                 var main = particle.main;
                 main.startSize = new ParticleSystem.MinMaxCurve(noteObj.spriteRenderer.sprite.rect.width / noteObj.spriteRenderer.sprite.pixelsPerUnit);

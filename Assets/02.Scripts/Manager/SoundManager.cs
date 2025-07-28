@@ -58,11 +58,8 @@ namespace _02.Scripts.Manager
         // ReSharper disable Unity.PerformanceAnalysis
         private async UniTask WaitForReturn(AudioSource source)
         {
-            await UniTask.WaitWhile(() => !source.isPlaying, 
-                cancellationToken: destroyCancellationToken);
-            await UniTask.WaitUntil(() => source.isPlaying, 
-                cancellationToken: destroyCancellationToken);
-            _pool.Release(source);
+            await UniTask.Delay(TimeSpan.FromSeconds(source.clip.length + 1), cancellationToken: destroyCancellationToken);
+            if(source) _pool.Release(source);
         }
     }
 }

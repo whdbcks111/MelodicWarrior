@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
+using _02.Scripts.Level.Note;
 using UnityEngine;
 
 namespace _02.Scripts.Level
 {
     public class Boss : MonoBehaviour
     {
+        [NonSerialized] public Action onHit = () => { };
         [NonSerialized] public int hp, maxHp;
         public readonly Dictionary<string, NoteObject> noteMap = new();
-
+        
+        
         [SerializeField] private NoteObject[] notes;
         public Transform shootPoint;
 
@@ -37,6 +40,7 @@ namespace _02.Scripts.Level
         public void Hit()
         {
             hp--;
+            onHit.Invoke();
         }
     }
 }

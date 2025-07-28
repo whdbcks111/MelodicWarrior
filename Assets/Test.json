@@ -1,0 +1,94 @@
+{
+    "startOffset": 0,
+    "beatsPerMeasure": 4,
+    "defaultBpm": 180,
+    "baseScrollSpeed": 4,
+    "bossId": "SkullKnightOfFlame",
+    "musicId": "Platform Shoes",
+    "pattern": [
+        {
+            "appearBeat": 0,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 1,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 1.5,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 2,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 3,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 3.5,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 4,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 5,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 6,
+            "noteType": "Defend"
+        },
+        {
+            "appearBeat": 7,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 8,
+            "noteType": "Defend"
+        },
+        {
+            "appearBeat": 9,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 10,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 11,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 12,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 13,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 14,
+            "noteType": "Defend"
+        },
+        {
+            "appearBeat": 16,
+            "noteType": "Defend"
+        },
+        {
+            "appearBeat": 17,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 17.5,
+            "noteType": "Attack"
+        },
+        {
+            "appearBeat": 18,
+            "noteType": "Attack"
+        }
+    ]
+}
